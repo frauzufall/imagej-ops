@@ -46,6 +46,11 @@ import net.imglib2.util.Pair;
 @Plugin(type = Namespace.class)
 public class ColocNamespace extends AbstractNamespace {
 
+	
+	// -- manders --
+	
+
+		
 	// -- icq --
 	
 	@OpMethod(op = net.imagej.ops.coloc.icq.LiICQ.class)
