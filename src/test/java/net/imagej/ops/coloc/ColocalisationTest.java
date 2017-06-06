@@ -24,6 +24,7 @@ package net.imagej.ops.coloc;
 import org.junit.After;
 import org.junit.Before;
 
+import net.imagej.ops.AbstractOpTest;
 import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.img.Img;
 import net.imglib2.type.logic.BitType;
@@ -31,36 +32,36 @@ import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
 
 
-public abstract class ColocalisationTest {
+public abstract class ColocalisationTest extends AbstractOpTest {
 
 	// images and meta data for zero correlation
-	RandomAccessibleInterval<UnsignedByteType> zeroCorrelationImageCh1;
-	RandomAccessibleInterval<UnsignedByteType> zeroCorrelationImageCh2;
-	RandomAccessibleInterval<BitType> zeroCorrelationAlwaysTrueMask;
-	double zeroCorrelationImageCh1Mean;
-	double zeroCorrelationImageCh2Mean;
+	protected Img<UnsignedByteType> zeroCorrelationImageCh1;
+	protected Img<UnsignedByteType> zeroCorrelationImageCh2;
+	protected RandomAccessibleInterval<BitType> zeroCorrelationAlwaysTrueMask;
+	protected double zeroCorrelationImageCh1Mean;
+	protected double zeroCorrelationImageCh2Mean;
 
 	// images and meta data for positive correlation test
 	// and real noisy image Manders' coeff with mask test
-	RandomAccessibleInterval<UnsignedByteType> positiveCorrelationImageCh1;
-	RandomAccessibleInterval<UnsignedByteType> positiveCorrelationImageCh2;
+	protected Img<UnsignedByteType> positiveCorrelationImageCh1;
+	protected Img<UnsignedByteType> positiveCorrelationImageCh2;
 	//  open mask image as a bit type cursor
-	Img<UnsignedByteType> positiveCorrelationMaskImage;
-	RandomAccessibleInterval<BitType> positiveCorrelationAlwaysTrueMask;
-	double positiveCorrelationImageCh1Mean;
-	double positiveCorrelationImageCh2Mean;
+	protected Img<UnsignedByteType> positiveCorrelationMaskImage;
+	protected RandomAccessibleInterval<BitType> positiveCorrelationAlwaysTrueMask;
+	protected double positiveCorrelationImageCh1Mean;
+	protected double positiveCorrelationImageCh2Mean;
 
 	// images and meta data for a synthetic negative correlation dataset
-	RandomAccessibleInterval<UnsignedByteType> syntheticNegativeCorrelationImageCh1;
-	RandomAccessibleInterval<UnsignedByteType> syntheticNegativeCorrelationImageCh2;
-	RandomAccessibleInterval<BitType> syntheticNegativeCorrelationAlwaysTrueMask;
-	double syntheticNegativeCorrelationImageCh1Mean;
-	double syntheticNegativeCorrelationImageCh2Mean;
+	protected Img<UnsignedByteType> syntheticNegativeCorrelationImageCh1;
+	protected Img<UnsignedByteType> syntheticNegativeCorrelationImageCh2;
+	protected RandomAccessibleInterval<BitType> syntheticNegativeCorrelationAlwaysTrueMask;
+	protected double syntheticNegativeCorrelationImageCh1Mean;
+	protected double syntheticNegativeCorrelationImageCh2Mean;
 	
 	// images like in the Manders paper
-	RandomAccessibleInterval<UnsignedByteType> mandersA, mandersB, mandersC, mandersD,
+	protected Img<UnsignedByteType> mandersA, mandersB, mandersC, mandersD,
 		mandersE, mandersF, mandersG, mandersH, mandersI;
-	RandomAccessibleInterval<BitType> mandersAlwaysTrueMask;
+	protected RandomAccessibleInterval<BitType> mandersAlwaysTrueMask;
 
 	/**
 	 * This method is run before every single test is run and is meant to set up
