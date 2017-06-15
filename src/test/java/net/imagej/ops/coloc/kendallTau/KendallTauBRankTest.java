@@ -36,6 +36,8 @@ import static org.junit.Assume.assumeTrue;
 
 import net.imagej.ops.coloc.ColocalisationTest;
 import net.imagej.ops.coloc.PairIterator;
+import net.imglib2.img.array.ArrayImgs;
+import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.integer.AbstractIntegerType;
 import net.imglib2.type.numeric.integer.ByteType;
 import net.imglib2.type.numeric.real.DoubleType;
@@ -109,9 +111,13 @@ public class KendallTauBRankTest extends ColocalisationTest {
 		return seed = 3170425 * seed + 132102;
 	}
 	
-	private void assertTau(final double expected, final int[] values1, final int[] values2) {
-		double kendallValue = (Double) ops.run(KendallTauBRank.class, values1, values2);
+	private <T extends RealType<T>, U extends RealType<U>> void assertTau(final double expected, final Iterable<T> img1, final Iterable<U> img2) {
+		final double kendallValue = (Double) ops.run(KendallTauBRank.class, img1, img2);
 		assertEquals(expected, kendallValue, 1e-10);
+	}
+
+	private void assertTau(final double expected, final int[] values1, final int[] values2) {
+		assertTau(expected, ArrayImgs.ints(values1, values1.length), ArrayImgs.ints(values2, values2.length));
 	}
 
 	private <T> double calculateNaive(final PairIterator<T> iterator) {
